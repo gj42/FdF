@@ -6,7 +6,7 @@
 /*   By: gjensen <gjensen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/09 15:40:50 by gjensen           #+#    #+#             */
-/*   Updated: 2015/03/24 19:32:00 by gjensen          ###   ########.fr       */
+/*   Updated: 2015/03/26 17:30:50 by gjensen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,9 @@ void	get_center(t_env *e)
 	int		xl;
 	double	fx;
 	double	fy;
-	int		i;
 
-	i = 0;
-	while (!(e->map->lines[i]->points[0]))
-		i++;
-	fx = e->map->lines[i]->points[0]->x;
-	fy = e->map->lines[i]->points[0]->y;
+	fx = e->map->lines[0]->points[0]->x;
+	fy = e->map->lines[0]->points[0]->y;
 	yl = e->map->len;
 	xl = e->map->lines[yl - 1]->len;
 	p.x = (e->map->lines[yl - 1]->points[xl - 1]->x +
@@ -37,7 +33,6 @@ void	get_center(t_env *e)
 
 void	init_window(char *title, int weight, int height, t_env *e)
 {
-	
 	if ((e->mlx = mlx_init()) == NULL)
 		fdf_malloc_error();
 	e->win = mlx_new_window(e->mlx, weight, height, title);
@@ -49,9 +44,9 @@ int		get_color(t_point *point1, t_point *point2)
 	int z;
 
 	if (point1->z_color > point2->z_color)
-		z = point2->z_color;
-	else
 		z = point1->z_color;
+	else
+		z = point2->z_color;
 	if (z < 0)
 		color = 0x0D6386;
 	else if (z >= 0 && z < 10)

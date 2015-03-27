@@ -6,7 +6,7 @@
 /*   By: gjensen <gjensen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/17 19:19:11 by gjensen           #+#    #+#             */
-/*   Updated: 2015/03/24 19:36:21 by gjensen          ###   ########.fr       */
+/*   Updated: 2015/03/26 17:24:47 by gjensen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int		fd_check_points(char *line, int nb_line, t_point ***point)
 	t_point	*a_point;
 	int		i;
 
-	str = ft_strsplit(line,' ');
+	str = ft_strsplit(line, ' ');
 	i = 0;
 	while (str[i] != NULL)
 		i++;
@@ -39,7 +39,7 @@ int		fd_check_points(char *line, int nb_line, t_point ***point)
 	return (i);
 }
 
-int		fd_line_number(char *map)
+int		fd_line_n(char *map)
 {
 	int		fd;
 	int		nb_lines;
@@ -48,7 +48,7 @@ int		fd_line_number(char *map)
 	fd = 0;
 	nb_lines = 0;
 	if ((fd = open(map, O_RDONLY)) < 0)
-		return 0;
+		return (0);
 	while (read(fd, &buf, 1))
 	{
 		if (buf == '\n')
@@ -58,18 +58,16 @@ int		fd_line_number(char *map)
 	return (nb_lines);
 }
 
-t_map	*fd_parse(char **argv, int fd)
+t_map	*fd_parse(char **argv, int fd, int nb_lines)
 {
 	char	*line;
-	int		nb_lines;
 	t_line	*line_map;
 	t_map	*map;
 	t_point	**point;
 
-	nb_lines = 0;
 	if (!(map = (t_map*)malloc(sizeof(t_map))) ||
-		!(map->lines = (t_line**)malloc(sizeof(t_line) * fd_line_number(argv[1]) + 1)))
-			fdf_malloc_error();
+	!(map->lines = (t_line**)malloc(sizeof(t_line) * fd_line_n(argv[1]) + 1)))
+		fdf_malloc_error();
 	map->len = 0;
 	if ((fd = open(argv[1], O_RDONLY)) > 0)
 	{

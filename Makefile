@@ -6,13 +6,13 @@
 #    By: gjensen <gjensen@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/12/10 13:00:33 by gjensen           #+#    #+#              #
-#    Updated: 2015/03/23 16:24:09 by gjensen          ###   ########.fr        #
+#    Updated: 2015/03/26 15:01:12 by gjensen          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = fdf
 
-SRC = main.c fdf.c parsearg.c tool.c draw.c error.c
+SRC = main.c fdf.c parsearg.c tool.c draw.c
 
 OBJ = $(SRC:.c=.o)
 

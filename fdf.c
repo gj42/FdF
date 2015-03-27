@@ -6,19 +6,19 @@
 /*   By: gjensen <gjensen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/12/10 14:45:18 by gjensen           #+#    #+#             */
-/*   Updated: 2015/03/24 18:05:18 by gjensen          ###   ########.fr       */
+/*   Updated: 2015/03/26 15:20:10 by gjensen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-int expose_hook(t_env *e)
+int		expose_hook(t_env *e)
 {
 	draw_map(e);
 	return (0);
 }
 
-int key_hook(int keycode, t_env *e)
+int		key_hook(int keycode, t_env *e)
 {
 	if (keycode == 53)
 		exit(0);
@@ -39,13 +39,13 @@ void	draw_map(t_env *e)
 		{
 			p1 = (*e->map->lines[y]->points[x]);
 			if (e->map->lines[y + 1])
-				if (e->map->lines[y + 1]->points[x] && x <= e->map->lines[y + 1]->len)
+				if (e->map->lines[y + 1]->points[x]
+						&& x <= e->map->lines[y + 1]->len)
 					draw_lines(e, p1, *e->map->lines[y + 1]->points[x]);
 			if (e->map->lines[y]->points[x + 1])
 				draw_lines(e, p1, *e->map->lines[y]->points[x + 1]);
 			x++;
 		}
 		y++;
-				
 	}
 }
